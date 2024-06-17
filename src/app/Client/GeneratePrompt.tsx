@@ -1,15 +1,18 @@
 'use client';
 
 import { generate } from "random-words";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ACTIONS, GENRES, LINES, NAMES } from "../Helpers/constants";
+import { PromptContext } from "./Contexts/PromptFeatures";
 
 const GeneratePrompt = () => {
-  const [requiredWord, setRequiredWord] = useState<string>();
-  const [genre, setGenre] = useState<string>();
-  const [action, setAction] = useState<string>();
-  const [name, setName] = useState<string>();
-  const [line, setLine] = useState<string>();
+  const {
+    requiredWord, setRequiredWord,
+    genre, setGenre,
+    action, setAction,
+    name, setName,
+    line, setLine,
+  } = useContext(PromptContext);
   
   useEffect(() => {
     const ws = generate(5);
@@ -18,7 +21,7 @@ const GeneratePrompt = () => {
     setAction(ACTIONS[(Math.floor(Math.random() * ACTIONS.length)) % ACTIONS.length])
     setName(NAMES[(Math.floor(Math.random() * NAMES.length)) % NAMES.length])
     setLine(LINES[(Math.floor(Math.random() * LINES.length)) % LINES.length])
-  }, []);
+  }, [setRequiredWord, setGenre, setAction, setName, setLine]);
 
   return (
     <ul>
