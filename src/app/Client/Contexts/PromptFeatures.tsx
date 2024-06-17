@@ -33,7 +33,7 @@ interface Props {
   children: ReactNode;
 }
 
-const Prompt = ({children}: Props) => {
+const PromptProvider = ({children}: Props) => {
   const [requiredWord, setRequiredWord] = useState<string>("");
   const [genre, setGenre] = useState<string>("");
   const [action, setAction] = useState<string>("");
@@ -59,4 +59,4 @@ const Prompt = ({children}: Props) => {
   )
 }
 
-export { Prompt, PromptContext };
+export { PromptProvider, PromptContext };
